@@ -10,16 +10,16 @@ contador=1
 data="1010001101"
 for input in data:
     input = int(input)
+    
+    aux=xor(input,c[4])
+    aux_2=xor(aux,c[1])
+    aux_3=xor(aux,c[3])
     for a in range(5):
         i=4-a
-        if(i!=4 or i!=2 or i!=0):
-            c[i]=c[i-1]
-    c[0]=xor(input,c[4])
-    print(c[0])
-    c[2]=xor(c[0],c[1])
-    print(c[2]) 
-    c[4]=xor(c[0],c[3])
-    print(c[4])
+        c[i]=c[i-1]
+    c[0]=aux
+    c[2]=aux_2
+    c[4]=aux_3
     print("step " + str(contador))
     print(c)
     contador=contador+1
