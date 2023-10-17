@@ -31,23 +31,23 @@ for carpeta in nombres_carpetas:
             print(texto) #imprimo el nombre de archivo en el que estoy realizando la accion
             c_aux=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] #creacion de una variable auxiliar ya que los datos se imprimiran al reves y se guardaran en este
             c=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] #creacion de variable c donde se guardaran los datos en orden correcto
-            contador=1 #contador para contar el numero de pasos que se realizan
             data=f.read() #lectura del archivo de texto
             for input in data:
+
                 input = int(input)
+                #calculo de todas las funciones xor
                 aux=xor(input,c_aux[15])
                 aux_1=xor(aux,c_aux[4])
                 aux_2=xor(aux,c_aux[11])
+                #desplazamiento de datos por crc
                 for a in range(16):
                     i=15-a
                     c_aux[i]=c_aux[i-1]
+                #se reemplazan los datos correspondientes debido al crc con las funciones xor
                 c_aux[0]=aux
                 c_aux[5]=aux_1
                 c_aux[12]=aux_2
                 for i in range(16):
                     c[i] = c_aux[15-i]
-                print("step " + str(contador))
-                print(c)
-                contador=contador+1
-        os.system("pause")
+            print(c) #impresion de resultado final 
 
